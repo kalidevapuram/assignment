@@ -1,0 +1,33 @@
+<div class="container">
+<a href="/songs">Dashboard</a>
+<div>
+	<form action="/" method="post" role="form">
+	  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+	  
+	  <button type="submit" class="btn btn-default">Log Out</button>
+	</form>
+</div>
+
+
+<h3>Others who added  <%=@song.title%> - <%=@song.artist%></h3>
+
+<table class="table table-bordered">
+			  <thead>
+			    <tr>
+			      <th>Name</th>
+			      <th>Times Added</th>
+			      
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<%@count.reverse.each do |c|%>
+				    <tr>
+				      <td><a href="/users/<%=c.user_id%>"><%=c.user.first_name%></a></td>
+				      <td><%=@count.where(user: User.find(c.user_id)).count%></td>
+				      
+				    </tr>
+			   <%end%>
+			  </tbody>
+		</table>
+
+</div>

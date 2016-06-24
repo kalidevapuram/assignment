@@ -1,0 +1,63 @@
+<div class="container">
+	<h1>Welcome</h1>
+  <div class="col-md-4">
+    <h1>Register</h1>
+    <form action="/users" method="post">
+    <% if flash[:register_error] %>
+      <%flash[:register_error].each do |error|%>
+        <h5 style="color:red"><%=error%></h5>
+      <%end%>
+    <%end%>
+    
+    <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+   
+      
+      <div class="form-group">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" name="user[first_name]" id="first_name">
+      </div>
+
+      <div class="form-group">
+        <label for="last_name">Last name</label>
+        <input type="text" class="form-control" name="user[last_name]" id="last_name">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="user[email]" id="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="user[password]" id="password">
+      </div>
+      <div class="form-group">
+        <label for="password_confirmation">Password Confirmation</label>
+        <input type="password" class="form-control" name="user[password_confirmation]" id="password_confirmation">
+      </div>
+      
+
+      <input type="submit" class="btn btn-default" value="Register" />
+      
+    </form>
+
+  </div>
+
+
+  <div class="col-md-4" style="margin-left:100px;"> 
+    <h1>Login</h1>
+    <form action="/sessions/new" method="post">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <h5 style="color:red"><%=flash[:email_error]%></h5>
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" name="email" id="email">
+      </div>
+      <h5 style="color:red"><%=flash[:password]%></h5>
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" name="password" id="password">
+        </div>
+
+      <input type="submit" class="btn btn-default" value="Login" />
+     </form>
+  </div>
+</div>
